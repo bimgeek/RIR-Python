@@ -32,8 +32,7 @@ elif WallSystemFamily == 1:
 
 elif WallSystemFamily == 2:
     for wall in WallTypeCollector:
-        if wall.Kind == DB.WallKind.Stacked:
-            WallTypes.append(wall)
+        WallTypes = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_StackedWalls).WhereElementIsElementType().ToElements()
 
 else:
     WallTypes = WallTypeCollector

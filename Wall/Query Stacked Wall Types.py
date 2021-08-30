@@ -18,9 +18,4 @@ def show_remark(msg):
     ghenv.Component.AddRuntimeMessage(RML.Remark, msg)
 
 #Query Ceiling Types
-WallTypes = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_Walls).WhereElementIsElementType().ToElements()
-StackedWallTypes = []
-
-for wall in WallTypes:
-    if wall.Kind == DB.WallKind.Stacked:
-        StackedWallTypes.append(wall)
+StackedWallTypes = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_StackedWalls).WhereElementIsElementType().ToElements()

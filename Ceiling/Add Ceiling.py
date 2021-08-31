@@ -49,6 +49,9 @@ if len(Type) == 1:
     for i in range(len(BoundaryList)):
         Types.append(Type[0])
 
+elif Boundary.BranchCount == 0:
+    show_remark("This component expects a boundary.")
+
 elif len(Type) != len(BoundaryList):
     show_warning("Boundary and Type inputs do not contain same amount of elements.")
 

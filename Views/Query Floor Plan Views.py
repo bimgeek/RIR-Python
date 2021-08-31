@@ -30,5 +30,5 @@ view_collector = DB.FilteredElementCollector(doc).OfClass(DB.View).WhereElementI
 FloorPlanViews = []
 
 for view in view_collector:
-    if view.ViewType == DB.ViewType.FloorPlan and view.Discipline == DB.ViewDiscipline.Architectural and view.IsTemplate == False:
+    if view.ViewType == DB.ViewType.FloorPlan and view.IsTemplate == False:
         FloorPlanViews.append(view)

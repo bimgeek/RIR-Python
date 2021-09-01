@@ -1,3 +1,6 @@
+#This definition takes two lists of geometry. Joins corresponding elements with each other.
+#This definition works best when used with Intersects Element/Brep Filter.
+
 import clr
 clr.AddReference('System.Core')
 clr.AddReference('RhinoInside.Revit')
@@ -25,6 +28,9 @@ def show_error(msg):
 
 def show_remark(msg):
     ghenv.Component.AddRuntimeMessage(RML.Remark, msg)
+
+EL01 = EL01 if isinstance(EL01, list) else [EL01]
+EL02 = EL02 if isinstance(EL02, list) else [EL02]
 
 if EL01 and EL02:
     with DB.Transaction(doc, "Join Two Sets of Geometry") as t:

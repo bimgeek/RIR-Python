@@ -30,6 +30,5 @@ if Doors:
     with DB.Transaction(doc, "Flip Doors") as t:
         t.Start()
         for door in Doors:
-            #door.flipFacing()
             door.flipHand()
         t.Commit()

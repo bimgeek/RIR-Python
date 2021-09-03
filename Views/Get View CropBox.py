@@ -14,6 +14,8 @@ from Grasshopper.Kernel import GH_RuntimeMessageLevel as RML
 from RhinoInside.Revit import Revit, Convert
 from Autodesk.Revit import DB
 
+clr.ImportExtensions(RhinoInside.Revit.Convert.Geometry)
+
 # access the active document object
 doc = Revit.ActiveDBDocument
 
@@ -37,6 +39,6 @@ for v in View:
     Visible.append(v.CropBoxVisible)
     crop = v.GetCropRegionShapeManager().GetCropShape()
     if len(crop)>0:
-        CropBoxCurve.append(crop)
+        CropBoxCurve.append(crop[0].ToCurve())
     else:
         CropBoxCurve.append(None)

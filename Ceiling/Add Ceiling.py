@@ -20,6 +20,8 @@ from RhinoInside.Revit import Revit, Convert
 clr.ImportExtensions(Convert.Geometry)
 from Autodesk.Revit import DB
 
+from System.Collections.Generic import List
+
 # access the active document object
 doc = Revit.ActiveDBDocument
 
@@ -75,3 +77,18 @@ elif len(Type) != len(Boundary):
 else:
     Types = Type
 
+with DB.Transaction(doc, "Create Ceilings") as t:
+    t.Start()
+    try:
+        for b, ty in zip(Boundary, Types):
+            CurveLoop = List[DB.CurveLoop]()
+        #Then Loop through each polyline/curve and append the to the CurveLoop list.
+        #Do not forget to convert them to Revit equivalents.
+            for c in b:
+                CurveLoop.Add(c.ToCurveLoop())
+            ceiling = DB.Ceiling.Create(doc, CurveLoop, ty.Id, Level.Id)
+            Ceilings.append(ceiling)
+        t.Commit()
+    except Exception as txn_err:
+        show_error(str(txn_err))
+        t.RollBack()

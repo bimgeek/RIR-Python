@@ -2,15 +2,9 @@ __author__ = "mbgoker"
 __version__ = "2021.09.09"
 
 import clr
-clr.AddReference('System.Core')
 clr.AddReference('RhinoInside.Revit')
 clr.AddReference('RevitAPI') 
-clr.AddReference('RevitAPIUI')
 
-from System import Enum, Action
-
-import rhinoscriptsyntax as rs
-import Rhino
 import RhinoInside
 import Grasshopper
 from Grasshopper.Kernel import GH_RuntimeMessageLevel as RML
